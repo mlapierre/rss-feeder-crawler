@@ -1,0 +1,34 @@
+ log4r_config:
+
+   loggers:
+   - name: "Feeder"
+     outputters:
+     - stdout_debug
+     - feeder_logfile
+
+   outputters:
+    - type        : DateFileOutputter
+      name        : feeder_logfile
+      level       : DEBUG
+      date_pattern: 'feeder_%Y%m%dT%H'
+      default     : true
+      trunc       : 'false'
+      dirname     : "/code/log"
+      formatter   :
+        type        : PatternFormatter
+        date_pattern: '%y%m%d %H:%M:%S'
+        pattern     : '%d %l: %m'
+
+    - name        : stdout_info
+      type        : StdoutOutputter
+      level       : INFO
+      formatter:
+        type    : PatternFormatter
+        pattern : '%d %l: %m'
+
+    - name        : stdout_debug
+      type        : StdoutOutputter
+      level       : DEBUG
+      formatter:
+        type    : PatternFormatter
+        pattern : '%d %l: %m'
